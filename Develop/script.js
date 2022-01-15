@@ -17,19 +17,46 @@ function writePassword() {
 }
 // Function to generate Password
 function generatePassword(){
-  var passwordLenght = validateLenght();
-  console.log(passwordLenght);  
+  var password = "";  
+  var passwordLenght = validateLenght();  
   if (passwordLenght){    
   var confirmSpecial = confirmSpecialChar();
   var confirmNum = confirmNumChar();
   var confirmLower = confirmLowerChar();
   var confirmUpper = confirmUpperChar();
+   if (confirmSpecial || confirmNum || confirmLower || confirmUpper){
+      for (i=0 ; i< passwordLenght; ){
+       if (confirmSpecial == true){
+         var randomNumber = Math.floor(Math.random() * specialChar.length);
+         password += specialChar.substring(randomNumber, randomNumber +1);
+         i++;
+        }
+       if (confirmNum == true && i < passwordLenght){
+         var randomNumber = Math.floor(Math.random() * numericChar.length);
+         password += numericChar.substring(randomNumber, randomNumber +1);
+         i++;
+        }
+       if (confirmUpper == true && i < passwordLenght){
+         var randomNumber = Math.floor(Math.random() * upperCaseChar.length);
+         password += upperCaseChar.substring(randomNumber, randomNumber +1);
+         i++;
+        }
+       if (confirmLower == true && i < passwordLenght){
+         var randomNumber = Math.floor(Math.random() * lowerCaseChar.length);
+         password += lowerCaseChar.substring(randomNumber, randomNumber +1);
+         i++;
+        }        
+      }
+      return password;           
+    }
+    else{
+    window.alert("You must select at least one type of character");
+    return;
+   }
   }
   else{
     return null;
-  }
-  
-  console.log(passwordLenght, confirmSpecial, confirmNum, confirmLower,confirmUpper);
+  }  
 };
 
 //Function for Password Lenght Validation
