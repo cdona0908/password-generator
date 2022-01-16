@@ -10,10 +10,12 @@ var passwordMaxLenght = 128;
 var password = "";
 // Write password to the #password input
 function writePassword() {
+      
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
-  
   passwordText.value = password;
+  return;
+  
 }
 // Function to generate Password
 function generatePassword(){
@@ -24,40 +26,43 @@ function generatePassword(){
     var confirmNum = window.confirm("Click OK to confirm including numeric characters");
     var confirmLower = window.confirm("Click OK to confirm including lower case characters");
     var confirmUpper = window.confirm("Click OK to confirm including upper case characters");
+  
    if (confirmSpecial || confirmNum || confirmLower || confirmUpper){
       for (i=0 ; i< passwordLenght; ){
-       if (confirmSpecial = true){
-         var randomNumber = Math.floor(Math.random() * specialChar.length);
-         password += specialChar.substring(randomNumber, randomNumber +1);
-         i++;
+        
+       if (confirmSpecial == true){
+         password += randomValue(specialChar);         
         }
-       if (confirmNum = true && i < passwordLenght){
-         var randomNumber = Math.floor(Math.random() * numericChar.length);
-         password += numericChar.substring(randomNumber, randomNumber +1);
-         i++;
+       if (confirmNum == true && i < passwordLenght){
+         password += randomValue(numericChar);         
         }
-       if (confirmUpper = true && i < passwordLenght){
-         var randomNumber = Math.floor(Math.random() * upperCaseChar.length);
-         password += upperCaseChar.substring(randomNumber, randomNumber +1);
-         i++;
+       if (confirmUpper == true && i < passwordLenght){
+         password += randomValue(upperCaseChar);         
         }
-       if (confirmLower = true && i < passwordLenght){
-         var randomNumber = Math.floor(Math.random() * lowerCaseChar.length);
-         password += lowerCaseChar.substring(randomNumber, randomNumber +1);
-         i++;
+       if (confirmLower == true && i < passwordLenght){
+         password += randomValue(lowerCaseChar);         
         }        
       }
       return password;           
     }
     else{
     window.alert("You must select at least one type of character");
-    return;
+    return null;
    }
   }
   else{
     return null;
   }  
 };
+
+// Function for Randmom character generation
+
+function randomValue(charType){
+  var randomNumber = Math.floor(Math.random() * charType.length);
+  var addCharacter = charType.substring(randomNumber, randomNumber +1);
+  i++;
+  return addCharacter;
+}
 
 //Function for Password Lenght Validation
 
