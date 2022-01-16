@@ -13,7 +13,6 @@ function writePassword() {
       
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
-  debugger;  
   passwordText.value = password;
   return;
   
@@ -31,17 +30,17 @@ function generatePassword(){
    if (confirmSpecial || confirmNum || confirmLower || confirmUpper){
       for (i=0 ; i< passwordLenght; ){
         
-       if (confirmSpecial = true){
-         password = randomValue(specialChar);         
+       if (confirmSpecial == true){
+         password += randomValue(specialChar);         
         }
        if (confirmNum == true && i < passwordLenght){
-         password = randomValue(numericChar);         
+         password += randomValue(numericChar);         
         }
        if (confirmUpper == true && i < passwordLenght){
-         password = randomValue(upperCaseChar);         
+         password += randomValue(upperCaseChar);         
         }
        if (confirmLower == true && i < passwordLenght){
-         password = randomValue(lowerCaseChar);         
+         password += randomValue(lowerCaseChar);         
         }        
       }
       return password;           
@@ -60,9 +59,9 @@ function generatePassword(){
 
 function randomValue(charType){
   var randomNumber = Math.floor(Math.random() * charType.length);
-  password += charType.substring(randomNumber, randomNumber +1);
+  var addCharacter = charType.substring(randomNumber, randomNumber +1);
   i++;
-  return password;
+  return addCharacter;
 }
 
 //Function for Password Lenght Validation
